@@ -7,5 +7,20 @@ end
 
 post '/aunty' do
   speech = params[:user_input]
-  redirect to("/?aunty=#{speech}")
+  puts "default ran"
+  redirect to("/return/#{speech}")
+end
+
+
+get '/return/:aunty' do
+  @aunty = params[:aunty]
+
+  content_type :json
+
+  if @aunty == @aunty.upcase
+    @return = "i can hear"
+  else
+    @return = "CANT HEAR YOU"
+  end
+  @return.to_json
 end
